@@ -1,0 +1,581 @@
+/* ******** Custom styles ******** */
+.cursor-pointer {
+  cursor: pointer;
+}
+.text-oblique {
+  font-style: oblique;
+}
+
+.list-width {
+  width: 28rem;
+}
+
+.avatar-size {
+  max-height: 150px;
+}
+
+.vision-sect {
+  background-color: #fff;
+  min-width: 70px;
+}
+
+.program-alt {
+  background-color: #000;
+  min-width: 70px;
+}
+
+.modal-header {
+  position: relative;
+  top: -50px;
+  left: 2px;
+}
+
+.shadow {
+  box-shadow: 10px 10px 6px #212121 !important;
+}
+
+.grey-light-color {
+  color: #ededed;
+}
+.indigo-slight {
+  background-color: #6f8496;
+}
+
+.indigo-light {
+  background-color: #68849c;
+}
+
+.text-lora {
+  font-family: Lora, serif;
+}
+
+.text-responsive {
+  font-size: calc(100% + 1vw + 1vh);
+}
+
+.bg-tooth-care {
+  background-image: url('assets/images/tooth-bg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-calendar {
+  background-image: url('assets/images/calendar.jpg');
+  background-size: cover;
+}
+
+.bg-mission {
+  background-image: url("assets/images/mission.jpg");
+  background-size: contain;
+}
+
+.bg-hands {
+  background-image: url("assets/images/hands2.png");
+}
+
+.img-xs {
+  max-height: 6rem;
+  width: auto;
+}
+
+.img-xs-programs {
+  max-height: 5rem;
+  width: auto;
+}
+
+.gallery-slide-border {
+  border-width: 20px;
+  border-style: solid;
+  border-top-color: #000;
+  border-bottom-color: #1a1a1a;
+  border-right: none;
+}
+
+.gallery-border {
+  border-width: 20px;
+  border-style: solid;
+  border-left-color: #4285f4;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bg-partners {
+  background-image: url("assets/images/surgery-room-brown.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-educate {
+  background-image: url("assets/images/presentation6.png");
+}
+
+.bg-students {
+  background-image: url("assets/images/students1.png");
+  background-size: contain;
+}
+
+.bg-gallery {
+  background-image: url("assets/images/bg-gallery.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.bg-gray {
+  background-color: #DFDFD0;
+}
+
+.bg-full-circle-dark {
+  background-image: url("assets/images/bg-full-circle-dark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.bg-half-dark {
+  background-image: url("assets/images/bg-half-dark.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
+
+.bg-half-dark-alt {
+  background-image: url("assets/images/bg-half-dark-alt.png");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+.img-present {
+  z-index: 899;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.img-dental-light{
+  z-index: 899;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.img-present-alt {
+  z-index: 899;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-aligned {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.top-right-aligned {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottom-right-aligned {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.border-bottom-left {
+  border-bottom-left-radius: 40px;
+}
+
+.border-bottom-right {
+  border-bottom-right-radius: 40px;
+}
+
+.border-top-left {
+  border-top-left-radius: 40px;
+}
+
+.border-top-right {
+  border-top-right-radius: 40px;
+}
+
+.blue-custom {
+  background-color: #2196f3 !important;
+}
+
+.height-75 {
+  max-height: 500px !important;
+}
+
+.no-list {
+  list-style-type: none !important;
+}
+
+@media (max-width: 576px) {
+  .btm-full {
+    min-width: 300px !important;
+  }
+}
+
+/* extra small screens , phones xs */
+@media (max-width: 575px) {
+  .box-right {
+    z-index: 900;
+    position: absolute;
+    top: 18%;
+    right: 46%;
+  }
+
+  .transparent-bg-strong {
+    background-color: rgba(62, 69, 81, 0.7);
+  }
+
+  /* .box-left {
+    z-index: 900;
+    position: absolute;
+    bottom: 21%;
+    right: 45%;
+  } */
+
+  /* .box-right-2 {
+    z-index: 900;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+  } */
+
+  .box-left-2 {
+    z-index: 901;
+    position: absolute;
+    top: 22%;
+    left: 59%;
+  }
+
+  /* .box-right-3 {
+    z-index: 900;
+    position: absolute;
+    bottom: -25%;
+    left: 58%;
+  } */
+
+  .box-left-3 {
+    z-index: 901;
+    position: absolute;
+    top: 32%;
+    left: 52%;
+  }
+}
+
+ /* for phones, phone landscape view up */
+@media (min-width: 576px) {
+  .transparent-bg-strong {
+    background-color: rgba(62, 69, 81, 0.7);
+  }
+  .box-right {
+    z-index: 900;
+    position: absolute;
+    top: 53%;
+    right: 45%;
+  }
+
+  .box-left {
+    z-index: 900;
+    position: absolute;
+    bottom: 50%;
+    right: 39%;
+  }
+
+  .box-right-2 {
+    z-index: 900;
+    position: absolute;
+    bottom: -12%;
+    left: 50%;
+  }
+
+  .box-left-2 {
+    z-index: 900;
+    position: absolute;
+    top: -15%;
+    left: 58%;
+  }
+
+  .box-right-3 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    left: 60%;
+  }
+
+  .box-left-3 {
+    z-index: 899;
+    position: absolute;
+    top: 1%;
+    left: 60%;
+  }
+  /* .btm-full {
+    min-width: 300px !important;
+  } */
+}
+
+ /* for tablets up, md */
+@media (min-width: 768px) {
+  .transparent-bg-strong {
+    background-color: rgba(62, 69, 81, 0.7);
+  }
+
+  .box-right {
+    z-index: 900;
+    position: absolute;
+    top: 60%;
+    right: 54%;
+  }
+
+  .box-left {
+    z-index: 900;
+    position: absolute;
+    bottom: 65%;
+    right: 55%;
+  }
+
+  .box-right-2 {
+    z-index: 900;
+    position: absolute;
+    bottom: 2%;
+    left: 58%;
+  }
+
+  .box-left-2 {
+    z-index: 900;
+    position: absolute;
+    top: -15%;
+    left: 74%;
+  }
+
+  .box-right-3 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    left: 74%;
+  }
+
+  .box-left-3 {
+    z-index: 900;
+    position: absolute;
+    top: -15%;
+    left: 74%;
+  }
+}
+
+ /* for laptops, desktops up,  lg */
+@media (min-width: 992px) {
+  .transparent-bg-strong {
+    background-color: rgba(62, 69, 81, 0);
+  }
+
+  .box-right {
+    z-index: 900;
+    position: absolute;
+    top: 13%;
+    right: 2%;
+  }
+
+  .box-left {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    right: 24%;
+  }
+
+  .box-right-2 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0%;
+    left: 28%;
+  }
+
+  .box-left-2 {
+    z-index: 901;
+    position: absolute;
+    top: 15%;
+    left: 4%;
+  }
+
+  .box-right-3 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+  }
+
+  .box-left-3 {
+    z-index: 901;
+    position: absolute;
+    top: 22%;
+    left: 1%;
+  }
+
+  .img-jumbo-1 {
+    max-height: 700px;
+  }
+
+  .img-jumbo-2 {
+    max-height: 730px;
+  }
+
+  .img-jumbo-3 {
+    max-width: 700px;
+  }
+}
+
+ /* for extra large screens, xl */
+@media (min-width: 1200px) {
+  .transparent-bg-strong {
+    background-color: rgba(62, 69, 81, 0);
+  }
+
+  .box-right {
+    z-index: 900;
+    position: absolute;
+    top: 13%;
+    right: 1%;
+  }
+
+  .box-left {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+  }
+
+  .box-right-2 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    right: 8%;
+  }
+
+  .box-left-2 {
+    z-index: 901;
+    position: absolute;
+    top: 9%;
+    left: 2%;
+  }
+
+  .box-right-3 {
+    z-index: 900;
+    position: absolute;
+    bottom: 0;
+    left: 23%;
+  }
+
+  .box-left-3 {
+    z-index: 901;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+  }
+
+  .img-jumbo-1 {
+    max-height: 800px;
+  }
+
+  .img-jumbo-2 {
+    max-height: 810px;
+  }
+
+  .img-jumbo-3 {
+    max-width: 850px;
+  }
+}
+
+
+
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(50%);
+}
+@media (max-width: 768px) {
+  .carousel .content {
+    width: 70%;
+  }
+}
+
+.bg1 {
+  backgroundColor: rgba(0, 0, 0, 0.2);
+}
+.bg2 {
+  background-color: #3e4551
+}
+.bg3 {
+  background-color: rgba(33, 150, 243, 0.7)
+}
+
+.ml1 {
+  margin-left: 1.65em;
+}
+
+.bg-banner {
+  background-image: url('https://mdbootstrap.com/img/Photos/Others/images/37.jpg');
+  height: 100vh
+}
+.bg-banner2 {
+  background-image: url('https://mdbootstrap.com/img/Others/doctor.jpg');
+  height: 460px
+}
+
+.transparent1 {
+  opacity: 1;
+}
+.w150 {
+  width: 150 px
+} */
+
+/* ******* custom styles end ******** */
+
+/* ************ ** Default styles *********** */
+
+.App {
+  text-align: center;
+}
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* ******** ******** Default styles end */

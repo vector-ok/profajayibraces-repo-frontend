@@ -1,0 +1,50 @@
+<MDBView src={banner}>
+  <MDBMask overlay="black-strong" className="d-flex flex-column justify-content-center align-items-end text-white text-center px-5">
+    <h1 className="text-lora text-capitalize display-5">A brighter smile for everyone </h1>
+    <p className="mb-0">"Together, people with good hearts and fine minds can move the world."  </p>
+    <p className="small pr-1">- William J. Clinton</p>
+    {/* <MDBAnimation type="pulse" infinite>
+      <MDBBtn gradient="blue" className="shadow rounded"> Join The Cause
+      <MDBIcon icon="users" className="ml-2" /> 
+      </MDBBtn>
+    {/* </MDBAnimation> */}
+  </MDBMask>
+
+  {/* for screens greater than xs  */}
+  <div className="bottom-aligned align-items-center w-100 d-none d-sm-block">
+    {/* <MDBCol md="12"> */}
+    <MDBBtnGroup className="w-100">
+      <MDBBtn className="text-capitalize ml-0 mb-0 blue lighten-1 border-top-left"> 
+        <p className="h4"> Donate now
+          <MDBIcon icon="hand-holding-heart" className="ml-2" size="1x" /> </p>
+      </MDBBtn>
+      <MDBBtn className="text-capitalize mb-0 blue-custom"> 
+        <p className="h4"> Join The Cause
+          <MDBIcon icon="users" className="ml-2" size="1x" /> </p> 
+      </MDBBtn>
+      <MDBBtn className="text-capitalize mr-0 mb-0 light-blue darken-2 border-top-right"> <p className="h4"> Be A Partner
+        <MDBIcon icon="hands-helping" className="ml-2" size="1x" /> </p>
+      </MDBBtn>
+    </MDBBtnGroup>
+    {/* </MDBCol> */}
+  </div>
+
+  {/* *********************** for  xs and sm screens  **************** */}
+  <div className="bottom-aligned align-items-center d-block d-sm-none w-100">
+    {/* <MDBCol md="12"> */}
+    <MDBBtnGroup className="w-100" vertical>
+      <MDBBtn className="text-capitalize ml-0 mb-0 blue lighten-3"> 
+        <p className="h4"> Donate now
+          <MDBIcon icon="hand-holding-heart" className="ml-2" size="1x" /> </p>
+      </MDBBtn>
+      <MDBBtn className="text-capitalize mb-0 blue lighten-2"> 
+        <p className="h4"> Join The Cause
+          <MDBIcon icon="users" className="ml-2" size="1x" /> </p> 
+      </MDBBtn>
+      <MDBBtn className="text-capitalize mr-0 mb-0 blue lighten-1"> <p className="h4"> Be A Partner
+        <MDBIcon icon="hands-helping" className="ml-2" size="1x" /> </p> 
+      </MDBBtn>
+    </MDBBtnGroup>
+    {/* </MDBCol> */}
+  </div>
+</MDBView>
