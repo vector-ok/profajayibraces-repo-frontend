@@ -12,12 +12,14 @@ state={
   modal2: false,
   collapseID: "collapse1",
   id: null,
+  year: null,
   title: "",
   description: "",
   location: "",
-  date: new Date(),
+  date: null,
   created: new Date(),
-  createdby: "developer",
+  createdby: "Admin",
+  submitError: false,
   programs: []
 }
 
@@ -60,19 +62,23 @@ newForm = (e) => {
   this.setState({
     modal1: true,
     id: null,
+    year: null,
     title: "",
     description: "",
     location: "",
-    date: new Date(),
+    date: null,
     created: new Date(),
-    createdby: "developer",
+    createdby: "Admin",
+    submitError: false
   });
+  console.log('inside new form');
 }
 
 newProgramSubmit = (e) => {
   // // let tokenId = JSON.parse(localStorage.getItem("localData"));
   // // const token = tokenId.user.token;
     e.preventDefault();
+    console.log('inside new program');
     axios.post('http://localhost:4000/programs/new', this.state
     // {
     //   headers: {"Access-Control-Allow-Origin": "*"
@@ -94,16 +100,18 @@ newProgramSubmit = (e) => {
       }
       else {
         console.log('issue: there was a problem');
-        alert("could not post data !");
+        this.setState({
+          submitError: true
+        });
       }
     })
     .catch( error => {
       console.log('error msg: something went wrong! ');
       console.error(error);
       // new Error(error);
-      // this.setState({
-      //   announcementsError: true
-      // });
+      this.setState({
+        submitError: true
+      });
     });
   }
 
@@ -117,13 +125,15 @@ updateForm = (e, program) => {
   e.preventDefault();
   this.setState({
     modal2: true,
+    year: program.year,
     id: program.id,
     title: program.title,
     description: program.description,
     location: program.location,
     date: program.date,
     createdby: program.createdby,
-    created: program.created
+    created: program.created,
+    submitError: false
   });
 }
 
@@ -253,9 +263,9 @@ deleteProgram = (e, grabProgram) => {
 }
 
 render() {
-  const { id, title, description, location, date, programs } = this.state;
+  const { id, year, title, description, location, date, programs } = this.state;
     return (
-      <div clssName="pb-5">
+      <div className="pb-5">
         <MDBContainer className="bg-info pt-1 mb-5" fluid>
           <div className="row my-5 pt-5">
             <div className="col-12 d-flex px-0">
@@ -280,9 +290,7 @@ render() {
             <div className="rgba-black-strong py-5 px-4">
               <MDBRow className="d-flex justify-content-center">
                 <MDBCol md="10" xl="8">
-                  <MDBCardTitle>
                     <h1 className="text-lora text-capitalize text-center white-text mb-2">  Programs</h1>
-                  </MDBCardTitle>
                   <MDBContainer className="accordion md-accordion accordion-5">
                     <MDBCard className="mb-4">
                       <div
@@ -314,9 +322,6 @@ render() {
                               </MDBBtn>
                             </p>
                           </div>
-                          {/* <p className="p-md-4 mb-0">
-                            {program.description}
-                          </p> */}
                           { programs.map( program => {
                             return <div>
                             <MDBCol key={program.id} className="rgba-black-light text-center py-2 mb-3">
@@ -326,13 +331,17 @@ render() {
                               {program.description}
                             </p>
                             { program.location ? <p className="px-md-4 mb-1">
+                            <MDBIcon icon="map-marker-alt" className=" px-2" />
                               {program.location}
                             </p> : ''}
                             { program.date ? <p className="px-md-4 mb-1">
+                              <MDBIcon icon="clock" className=" px-2" />
                               {program.date}
                             </p> : ''}
                             { program.createdby ? <p className="px-md-4 mb-1">
-                              {program.createdby}
+                              {/* <MDBIcon icon="pen-square" className=" px-2" /> */}
+                              <small> Added by: &nbsp;
+                              {program.createdby} </small>
                             </p> : ''}
 
                             <div className="rounded-bottom mdb-color lighten-3 text-center py-1 px-2">
@@ -392,7 +401,6 @@ render() {
                   titleClass="d-inline title"
                   className="text-center light-blue darken-3 white-text"
                 >
-                  <MDBIcon />
                   <MDBIcon icon="plus" className="px-3" />
                   Add Program
                 </MDBModalHeader>
@@ -433,12 +441,12 @@ render() {
                         value={date}
                       />
                       <div className="text-center mt-1-half">
-                        {/* {
-                          this.state.announcementsError === true ?
+                        {
+                          this.state.submitError === true ?
                             <MDBAlert color="danger">
                               <strong>Oops!</strong> Something went wrong
                             </MDBAlert> : null
-                        } */}
+                        }
                         <MDBBtn
                           color="primary"
                           type="submit"
@@ -475,6 +483,24 @@ render() {
                <MDBModalBody>
                  <form>
                    <div className="text-left">
+                     {/* <MDBInput
+                       hidden
+                       name="year"
+                       label="Year"
+                       type="number"
+                       iconClass="dark-grey"
+                       onChange={this.changeHandler}
+                       value=''
+                       // value={() => {
+                       //   if (this.state.date === null){}
+                       //   else {
+                       //    const dateVal = this.state.date
+                       //    dateVal.split('-')
+                       //    const date = dateVal[0]
+                       //    return date
+                       //   }
+                       // }}
+                     /> */}
                      <MDBInput
                        name="title"
                        label="Title"
@@ -509,12 +535,12 @@ render() {
                        value={date}
                      />
                      <div className="text-center mt-1-half">
-                       {/* {
-                         this.state.announcementsError === true ?
+                       {
+                         this.state.submitError === true ?
                            <MDBAlert color="danger">
                              <strong>Oops!</strong> Something went wrong
                            </MDBAlert> : null
-                       } */}
+                       }
                        <MDBBtn
                          color="primary"
                          type="submit"

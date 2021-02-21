@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn, MDBRow, MDBCol, MDBInput, MDBAlert } from "mdbreact";
 import { BrowserRouter as Router, withRouter, Link } from 'react-router-dom';
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../assets/images/logo2.png';
 import logo_alt from '../assets/images/logo.png';
 
 class Navbar extends Component {
 state = {
+  name: '',
+  email: '',
+  password: '',
+  key: '',
+  joined: new Date(),
+  submitError: false,
+  modal1: false,
+  loginForm: true,
+  loggedIn: false,
   isOpen: false,
   home: false,
   // home2: false,
@@ -18,6 +30,13 @@ state = {
   contact: false,
   programActive: ''
 };
+
+toggle = nr => () => {
+  let modalNumber = 'modal' + nr
+  this.setState({
+    [modalNumber]: !this.state[modalNumber]
+  });
+}
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
@@ -111,7 +130,84 @@ handleStyle = (nr) => (e) => {
   }
 }
 
+changeHandler = (e) => {
+  e.preventDefault();
+  this.setState({
+    [e.target.name]: e.target.value
+  })
+}
+
+toastSubmitPost = () => {
+  toast.success("Success! Form submitted.")
+}
+
+signupSubmit = () => {
+  axios.post('http://localhost:4000/admin/signup', this.state)
+  .then(response => {
+    if(response.status === 200){
+      console.log('data posted - frontend', response);
+      this.toastSubmitPost();
+        this.setState({
+          submitError: false,
+          modal1: false
+        });
+        this.loginSubmit();
+    } else {
+      console.log('inside catch block');
+      this.setState({
+        submitError: true,
+        // modal1: false
+      });
+    }
+  })
+  .catch(error => error)
+  this.setState({
+    submitError: true,
+    // modal1: false
+  });
+}
+
+loginSubmit = () => {
+  axios.post('http://localhost:4000/admin/signin', this.state)
+  .then(response => {
+    if(response.status === 200){
+      console.log('data posted - frontend', response.data.data);
+      this.toastSubmitPost();
+      localStorage.setItem("currentState", JSON.stringify(response.data.data));
+        this.setState({
+          submitError: false,
+          loggedIn: true,
+          modal1: false
+        });
+    } else {
+      console.log('inside catch block');
+      this.setState({
+        submitError: true,
+        // modal1: false
+      });
+    }
+  })
+  .catch(error => error)
+  this.setState({
+    submitError: true,
+    // modal1: false
+  });
+}
+
+logout = () => {
+  this.setState({
+    loggedIn: false
+  })
+  localStorage.clear();
+  window.location.reload();
+  // let name = JSON.parse(localStorage.getItem("localData")).user.name;
+  // name.split(" ");
+  // // console.log(name[0]);
+  // return name[0];
+}
+
 render() {
+  const { name, email, password, key} = this.state
   return (
      // <Router>
      <MDBNavbar color="rgba-stylish-light" fixed="top" dark expand="lg" scrolling transparent>
@@ -209,20 +305,128 @@ render() {
                  <MDBIcon fab icon="instagram" />
                </MDBNavLink>
              </MDBNavItem>
-             {/* <MDBNavItem>
-               <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-               <MDBIcon icon="user" />
-                </MDBDropdownToggle>
-                <MDBDropdownMenu className="dropdown-default">
-               <MDBDropdownItem href="#!">login</MDBDropdownItem>
-               <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-               <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-               <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-               </MDBDropdown>
-             </MDBNavItem> */}
+             {
+               this.state.loggedIn ?
+                  <MDBNavItem>
+                    <MDBDropdown>
+                     <MDBDropdownToggle nav caret>
+                    <MDBIcon icon="user" /> Admin
+                     </MDBDropdownToggle>
+                     <MDBDropdownMenu className="dropdown-default">
+                    <MDBDropdownItem href="#!">
+                      <div className="waves-effect waves-light" to="#!" onClick={this.logout}>
+                      <MDBIcon icon="sign-out-alt" className="px-2" />
+                      Logout
+                      {/* <MDBBtn size="sm" color="white" outline>
+                         Logout </MDBBtn> */}
+                    </div>
+                    </MDBDropdownItem>
+                     </MDBDropdownMenu>
+                    </MDBDropdown>
+                  </MDBNavItem>
+               :
+               <MDBNavItem>
+                 <MDBDropdown>
+                  <MDBDropdownToggle nav caret>
+                 <MDBIcon icon="user" />
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu className="dropdown-default">
+                 <MDBDropdownItem href="#!">
+                   <div className="waves-effect waves-light" to="#!" onClick={this.toggle(1)}>
+                   <MDBIcon icon="sign-in-alt" className="px-2" />
+                   login
+                 </div>
+                 </MDBDropdownItem>
+                 {/* <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
+                 <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                 <MDBDropdownItem href="#!">Something else here</MDBDropdownItem> */}
+
+                  </MDBDropdownMenu>
+                 </MDBDropdown>
+               </MDBNavItem>
+             }
            </MDBNavbarNav>
+
+           {/* login modal */}
+           <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} centered>
+      <MDBModalHeader toggle={this.toggle(1)}
+        titleClass="d-inline title"
+        className="text-center light-blue darken-3 white-text px-2">
+          <MDBIcon icon="user" classname="pr-2" />
+          &nbsp; Admin
+      </MDBModalHeader>
+      <MDBModalBody>
+        <MDBRow>
+    <MDBCol>
+      <form>
+      <div className="text-center">
+        <MDBBtn color="white" onClick={() => this.setState({loginForm: true})}>Login</MDBBtn>
+        <MDBBtn color="primary" onClick={() => this.setState({loginForm: false})}>Sign up</MDBBtn>
+      </div>
+        {
+          this.state.loginForm ?
+          <div>
+          <div className="grey-text">
+            <MDBInput name="email" label="Type your email" icon="envelope" group type="email" validate error="wrong"
+              success="right" className="black-text pl-5"
+              onChange={this.changeHandler}
+              value={email}/>
+            <MDBInput name="password" label="Type your password" icon="lock" group type="password" validate  className="black-text pl-5"
+            onChange={this.changeHandler}
+            value={password} />
+          </div>
+          <div className="text-center">
+            {
+              this.state.submitError === true ?
+                <MDBAlert color="danger">
+                  <strong>Oops!</strong> Something went wrong
+                </MDBAlert> : null
+            }
+            <MDBBtn color="white"
+            onClick={this.loginSubmit}>
+              <MDBIcon icon="paper-plane" claassName="pr-2" />
+              &nbsp; Login </MDBBtn>
+          </div>
+        </div>
+        :
+        <div>
+          <div className="grey-text">
+            <MDBInput name="name" label="Type your name" icon="user" group type="text" validate error="wrong"
+              success="right" className="black-text pl-5"
+              onChange={this.changeHandler}
+              value={name} />
+            <MDBInput name='email' label="Type your email" icon="envelope" group type="email" validate error="wrong"
+              success="right" className="black-text pl-5"
+              onChange={this.changeHandler}
+              value={email} />
+            <MDBInput name="password" label="Type your password" icon="lock" group type="password" validate className="black-text pl-5"
+            onChange={this.changeHandler}
+            value={password} />
+            <MDBInput name="key" label="Enter key" icon="key" group type="text" validate error="wrong"
+              success="right" className="black-text pl-5"
+              onChange={this.changeHandler}
+              value={key} />
+          </div>
+          <div className="text-center">
+            {
+              this.state.submitError === true ?
+                <MDBAlert color="danger">
+                  <strong>Oops!</strong> Something went wrong
+                </MDBAlert> : null
+            }
+            <MDBBtn color="primary"
+            onClick={this.signupSubmit}>
+              <MDBIcon icon="paper-plane" claassName="pr-2" />
+              &nbsp; Sign up </MDBBtn>
+          </div>
+        </div>
+        }
+      </form>
+      <ToastContainer pauseOnFocusLoss={true} />
+    </MDBCol>
+  </MDBRow>
+      </MDBModalBody>
+    </MDBModal>
          </MDBCollapse>
        </MDBNavbar>
     // </Router>
