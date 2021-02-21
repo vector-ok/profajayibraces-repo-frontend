@@ -10,26 +10,40 @@ import logo from '../assets/images/logo2.png';
 import logo_alt from '../assets/images/logo.png';
 
 class Navbar extends Component {
-state = {
-  name: '',
-  email: '',
-  password: '',
-  key: '',
-  joined: new Date(),
-  submitError: false,
-  modal1: false,
-  loginForm: true,
-  loggedIn: false,
-  isOpen: false,
-  home: false,
-  // home2: false,
-  about: false,
-  programs: false,
-  join: false,
-  gallery: false,
-  contact: false,
-  programActive: ''
-};
+  constructor(props){
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      key: '',
+      joined: new Date(),
+      submitError: false,
+      modal1: false,
+      loginForm: true,
+      loggedIn: false,
+      isOpen: false,
+      home: false,
+      // home2: false,
+      about: false,
+      programs: false,
+      join: false,
+      gallery: false,
+      contact: false,
+      programActive: ''
+    };
+  }
+  componentDidMount = () => {
+    if (this.props.dataToChild !== null) {
+    this.setState({
+      loggedIn: true
+    });
+    } else {
+      this.setState({
+        loggedIn: false
+      })
+    }
+  }
 
 toggle = nr => () => {
   let modalNumber = 'modal' + nr
@@ -171,14 +185,13 @@ loginSubmit = () => {
   axios.post('http://localhost:4000/admin/signin', this.state)
   .then(response => {
     if(response.status === 200){
-      console.log('data posted - frontend', response.data.data);
-      this.toastSubmitPost();
-      localStorage.setItem("currentState", JSON.stringify(response.data.data));
-        this.setState({
-          submitError: false,
-          loggedIn: true,
-          modal1: false
-        });
+      // token is in response.data
+      // console.log('data posted - frontend', response.data.data);
+        this.toastSubmitPost();
+        localStorage.setItem("currentState", JSON.stringify(response.data.data));
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
     } else {
       console.log('inside catch block');
       this.setState({
@@ -383,7 +396,14 @@ render() {
                 </MDBAlert> : null
             }
             <MDBBtn color="white"
-            onClick={this.loginSubmit}>
+            onClick={() => {
+              this.setState({
+                submitError: false,
+                loggedIn: true,
+                modal1: false
+              });
+              this.loginSubmit()}
+          }>
               <MDBIcon icon="paper-plane" claassName="pr-2" />
               &nbsp; Login </MDBBtn>
           </div>

@@ -12,6 +12,13 @@ import Why from './components/Why';
 import './App.css';
 //
 function App() {
+  // console.log('data from local ',JSON.parse(localStorage.getItem("currentState")).name)
+    // isLoggedin();
+  let loggedIn = null;
+  if (JSON.parse(localStorage.getItem("currentState"))) {
+    loggedIn = localStorage.getItem("currentState").name;
+  }
+
   const wrongCode = () => {
     let person = prompt('*** Invalid response ***', 'Please enter correct access code *');
     if (person == null || person !== '6789') {
@@ -31,40 +38,40 @@ function App() {
       {/* { login() } */}
 
       <Router>
-        <Navbar/>
+        <Navbar dataToChild = {loggedIn}/>
         <Switch>
           <Route path="/" render={(props) => {
             return (
               <div>
-                <Home />
+                <Home dataToChild = {loggedIn} />
               </div>
             )
           }} exact/>
           <Route path="/why" render={(props) => {
             return (
               <div>
-                <Why />
+                <Why dataToChild = {loggedIn} />
               </div>
             )
           }} exact/>
           <Route
             path={"/join"}
             render={props => (
-              <Join />
+              <Join dataToChild = {loggedIn} />
             )} exact/>
           <Route path={'/contact'}
             render={props => (
-              <Contact />
+              <Contact dataToChild = {loggedIn} />
             )} exact />
           <Route path={'/about'} render={props =>  (
-            <About />
+            <About dataToChild = {loggedIn} />
           )} exact />
           <Route path={'/programs'} render={props => (
-            <Programs />
+            <Programs dataToChild = {loggedIn} />
           )} exact />
           <Route path={'/gallery'}
           render={props=> (
-            <Gallery />
+            <Gallery dataToChild = {loggedIn} />
           )} exact />
         </Switch>
         <Footer/>

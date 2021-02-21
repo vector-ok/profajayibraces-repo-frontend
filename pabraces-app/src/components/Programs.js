@@ -7,23 +7,36 @@ import calendar from '../assets/images/calendar-cube.png'
 
 
 class Programs extends Component {
-state={
-  modal1: false,
-  modal2: false,
-  collapseID: "collapse1",
-  id: null,
-  year: null,
-  title: "",
-  description: "",
-  location: "",
-  date: null,
-  created: new Date(),
-  createdby: "Admin",
-  submitError: false,
-  programs: []
-}
+  constructor(props){
+    super(props);
+    this.state={
+      loggedIn: false,
+      modal1: false,
+      modal2: false,
+      collapseID: "collapse1",
+      id: null,
+      year: null,
+      title: "",
+      description: "",
+      location: "",
+      date: null,
+      created: new Date(),
+      createdby: "Admin",
+      submitError: false,
+      programs: []
+    }
+  }
 
 componentDidMount = () => {
+  if (this.props.dataToChild !== null) {
+    this.setState({
+      loggedIn: true
+    });
+  } else {
+      this.setState({
+        loggedIn: false
+      })
+  }
   this.getPrograms();
 }
 
@@ -138,7 +151,7 @@ updateForm = (e, program) => {
 }
 
 toastProgramUpdate = () => {
-  toast.success('Program update successful!!');
+  toast.success('Program update successful!');
 }
 
 updateProgram = (e) => {
@@ -326,7 +339,7 @@ render() {
                             return <div>
                             <MDBCol key={program.id} className="rgba-black-light text-center py-2 mb-3">
                               {/* {console.log(program)} */}
-                              <h3 className="mb-0" > { program.title } </h3>
+                              <h3 className="mb-0 text-info" > { program.title } </h3>
                             <p className="px-md-4 mb-1">
                               {program.description}
                             </p>
@@ -338,32 +351,34 @@ render() {
                               <MDBIcon icon="clock" className=" px-2" />
                               {program.date}
                             </p> : ''}
-                            { program.createdby ? <p className="px-md-4 mb-1">
-                              {/* <MDBIcon icon="pen-square" className=" px-2" /> */}
+                            {/* { program.createdby ? <p className="px-md-4 mb-1">
                               <small> Added by: &nbsp;
                               {program.createdby} </small>
-                            </p> : ''}
+                            </p> : ''} */}
 
-                            <div className="rounded-bottom mdb-color lighten-3 text-center py-1 px-2">
-                 <ul className="list-unstyled list-inline font-small">
-                   <li className="list-inline-item pr-2 white-text float-left pl-1">
-                     <MDBIcon far icon="clock" /> {program.created}
-                   </li>
+              { this.state.loggedIn === false ? '' : <div className="rounded-bottom mdb-color lighten-3 text-center py-1 px-2">
+                  <ul className="list-unstyled list-inline font-small">
+                    <li className="list-inline-item pr-2 white-text float-left pl-1">
+                      <MDBIcon far icon="clock" /> {program.created}
+                    </li>
 
-                   <li className="list-inline-item float-right pr-1">
-                       <MDBIcon far icon="trash-alt" className="red-text" onClick={(e) => {
-                         const grabProgram = program;
-                         if (window.confirm('Are you sure you want to delete this item?')) this.deleteProgram(e, grabProgram);
-                         return
-                       }}/>
-                   </li>
+                    <li className="list-inline-item float-right pr-1">
+                      <MDBIcon far icon="trash-alt" className="red-text" onClick={(e) => {
+                        const grabProgram = program;
+                          if (window.confirm('Are you sure you want to delete this item?')) this.deleteProgram(e, grabProgram);
+                           return
+                      }}/>
+                    </li>
 
-                  <li className="list-inline-item float-right pr-4">
-                    <MDBIcon icon="pencil-alt" className="white-text" onClick={(e) => {
-                      return (
-                        this.updateForm(e, program)
-                      )}} />
-                  </li>
+                    <li className="list-inline-item float-right pr-4">
+                      <MDBIcon icon="pencil-alt" className="white-text" onClick={(e) => {
+                        return (
+                          this.updateForm(e, program)
+                        )}} />
+                    </li>
+                  </ul>
+                </div>
+              }
 
                    {/* delete event button.  Display restricted to Admin */}
                    {/* { JSON.parse(localStorage.getItem("localData")).role === "admin" ?
@@ -385,8 +400,8 @@ render() {
                        Share
                      </a>
                    </li> */}
-                 </ul>
-               </div>
+                 {/* </ul> */}
+               {/* </div> */}
             </MDBCol>
 
             {/* modal for ADD NEW program start */}
