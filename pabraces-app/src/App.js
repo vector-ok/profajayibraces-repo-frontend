@@ -16,7 +16,7 @@ function App() {
     // isLoggedin();
   let loggedIn = null;
   if (JSON.parse(localStorage.getItem("currentState"))) {
-    loggedIn = localStorage.getItem("currentState").name;
+    loggedIn = localStorage.getItem("currentState").token;
   }
 
   const wrongCode = () => {

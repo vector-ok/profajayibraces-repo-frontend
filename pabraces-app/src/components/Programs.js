@@ -15,7 +15,7 @@ class Programs extends Component {
       modal2: false,
       collapseID: "collapse1",
       id: null,
-      year: null,
+      year: new Date().getFullYear(),
       title: "",
       description: "",
       location: "",
@@ -23,6 +23,7 @@ class Programs extends Component {
       created: new Date(),
       createdby: "Admin",
       submitError: false,
+      dataSent: '',
       programs: []
     }
   }
@@ -75,7 +76,7 @@ newForm = (e) => {
   this.setState({
     modal1: true,
     id: null,
-    year: null,
+    year: new Date().getFullYear(),
     title: "",
     description: "",
     location: "",
@@ -88,10 +89,30 @@ newForm = (e) => {
 }
 
 newProgramSubmit = (e) => {
+  // axios({
+  //         method: 'post',
+  //         url: 'https://profajayibraces.org/apis/program.php',
+  //         headers: {
+  //             'content-type': 'application/json'
+  //         },
+  //         data: this.state
+  //     })
+  //     .then(result => {
+  //         console.log(result.data)
+  //         this.setState({
+  //             dataSent: result.data.sent,
+  //         })
+  //         console.log(this.state)
+  //     })
+  //     .catch(error => this.setState({
+  //         error: error.message
+  //     }));
+
+
+
   // // let tokenId = JSON.parse(localStorage.getItem("localData"));
   // // const token = tokenId.user.token;
     e.preventDefault();
-    console.log('inside new program');
     axios.post('http://localhost:4000/programs/new', this.state
     // {
     //   headers: {"Access-Control-Allow-Origin": "*"
@@ -202,6 +223,7 @@ toastEventUpdate = () => {
 
 getPrograms = () => {
   // axios.get('https://profajayibraces.org/apis/programs.json')
+  console.log('inside get frontend');
   axios.get('http://localhost:4000/programs')
   .then(response => {
     if (response.status === 200){
@@ -304,6 +326,20 @@ render() {
               <MDBRow className="d-flex justify-content-center">
                 <MDBCol md="10" xl="8">
                     <h1 className="text-lora text-capitalize text-center white-text mb-2">  Programs</h1>
+
+                    <div className=" box feedback-form">
+    {this.state.dataSent ?
+    <p className="msg">
+    SUCCESS<br/><br/>
+    Thanks for submitting your feedback.<br/>
+    We appreciate your time.
+    </p>
+    :
+    <p>something went wrong php</p>
+    }
+  </div>
+
+
                   <MDBContainer className="accordion md-accordion accordion-5">
                     <MDBCard className="mb-4">
                       <div
@@ -325,6 +361,9 @@ render() {
 
                       <MDBCollapse id="collapse2" isOpen={this.state.collapseID}>
                         <MDBCardBody className="rgba-black-strong white-text z-depth-1">
+                          {
+                            this.state.loggedIn === false ? ''
+                            :
                           <div>
                             <p>
                               <MDBBtn color="white" className="w-100 blue-text" onClick={(e) => {
@@ -335,6 +374,7 @@ render() {
                               </MDBBtn>
                             </p>
                           </div>
+                        }
                           { programs.map( program => {
                             return <div>
                             <MDBCol key={program.id} className="rgba-black-light text-center py-2 mb-3">
@@ -423,6 +463,14 @@ render() {
                   <form>
                     <div className="text-left">
                       <MDBInput
+                        name="year"
+                        label="Year"
+                        type="number"
+                        iconClass="dark-grey"
+                        onChange={this.changeHandler}
+                        value={year}
+                      />
+                      <MDBInput
                         name="title"
                         label="Title"
                         type="text"
@@ -491,31 +539,31 @@ render() {
                  titleClass="d-inline title"
                  className="text-center light-blue darken-3 white-text"
                >
-                 <MDBIcon />
                  <MDBIcon icon="pencil-alt" className="px-3" />
                  Update Program
                </MDBModalHeader>
                <MDBModalBody>
                  <form>
                    <div className="text-left">
-                     {/* <MDBInput
-                       hidden
+                     <MDBInput
                        name="year"
                        label="Year"
                        type="number"
                        iconClass="dark-grey"
                        onChange={this.changeHandler}
-                       value=''
+                       value={year}
                        // value={() => {
-                       //   if (this.state.date === null){}
+                       //   if (this.state.date === null){
+                       //     return this.state.year
+                       //   }
                        //   else {
                        //    const dateVal = this.state.date
                        //    dateVal.split('-')
-                       //    const date = dateVal[0]
-                       //    return date
+                       //    const year = dateVal[0]
+                       //    return year
                        //   }
                        // }}
-                     /> */}
+                     />
                      <MDBInput
                        name="title"
                        label="Title"

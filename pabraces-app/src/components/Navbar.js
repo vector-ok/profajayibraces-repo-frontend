@@ -35,6 +35,7 @@ class Navbar extends Component {
   }
   componentDidMount = () => {
     if (this.props.dataToChild !== null) {
+      console.log('dataToChild is ', this.props.dataToChild);
     this.setState({
       loggedIn: true
     });
@@ -186,9 +187,9 @@ loginSubmit = () => {
   .then(response => {
     if(response.status === 200){
       // token is in response.data
-      // console.log('data posted - frontend', response.data.data);
+      console.log('data posted - frontend', response.data);
         this.toastSubmitPost();
-        localStorage.setItem("currentState", JSON.stringify(response.data.data));
+        localStorage.setItem("currentState", JSON.stringify(response.data.token));
         setTimeout(() => {
           window.location.reload();
         }, 100);
