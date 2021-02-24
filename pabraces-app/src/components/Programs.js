@@ -13,6 +13,7 @@ class Programs extends Component {
       loggedIn: false,
       modal1: false,
       modal2: false,
+      adminId: localStorage.getItem('localData') ? JSON.parse(localStorage.getItem('localData')).adminId : null,
       collapseID: "collapse1",
       id: null,
       year: new Date().getFullYear(),
@@ -108,17 +109,16 @@ newProgramSubmit = (e) => {
   //         error: error.message
   //     }));
 
-
-
-  // // let tokenId = JSON.parse(localStorage.getItem("localData"));
-  // // const token = tokenId.user.token;
+  let tokenId = JSON.parse(localStorage.getItem("localData"));
+  const token = tokenId.token;
     e.preventDefault();
-    axios.post('http://localhost:4000/programs/new', this.state
-    // {
-    //   headers: {"Access-Control-Allow-Origin": "*"
-    //     // "Authorization": `Bearer ${token}`
-    //   }
-    // }
+    // axios.post('https://pabraces.herokuapp.com/programs/new', this.state,
+    axios.post('https://pabraces.herokuapp.com/programs/new', this.state,
+    {
+      headers: {"Access-Control-Allow-Origin": "*",
+        "Authorization": `Bearer ${token}`
+      }
+    }
   )
     .then(response => {
       if(response.status === 200) {
@@ -177,9 +177,15 @@ toastProgramUpdate = () => {
 
 updateProgram = (e) => {
   e.preventDefault();
-  // let tokenId = JSON.parse(localStorage.getItem("localData"));
+  let token = JSON.parse(localStorage.getItem("localData")).token;
+  console.log('token is ', token);
   // const token = tokenId.user.token;
-  axios.put(`http://localhost:4000/programs/${this.state.id}`, this.state, {
+  axios.put(`https://pabraces.herokuapp.com/programs/${this.state.id}`,this.state, {
+    headers: {
+        "Authorization": `Bearer ${token}`
+    }
+
+  // axios.put(`https://pabraces.herokuapp.com/programs/${this.state.id}`, this.state, {
     // headers: {
     //     "Authorization": `Bearer ${token}`
     // }
@@ -222,12 +228,16 @@ toastEventUpdate = () => {
 
 
 getPrograms = () => {
+  {setTimeout(() => {
+    console.log('adminIn is ', this.state.adminId);
+  }, 1000);}
   // axios.get('https://profajayibraces.org/apis/programs.json')
-  console.log('inside get frontend');
-  axios.get('http://localhost:4000/programs')
+  // console.log('inside get frontend');
+  axios.get('https://pabraces.herokuapp.com/programs')
+  // axios.get('http://localhost:3000//programs')
   .then(response => {
+    console.log('response is ', response.data);
     if (response.status === 200){
-      // console.log('response is ', response.data);
       this.setState({
         programs: response.data.programs
       });
@@ -261,15 +271,15 @@ toastProgramDelete = () => {
 //  delete Event function
 deleteProgram = (e, grabProgram) => {
   e.preventDefault();
-  // let tokenId = JSON.parse(localStorage.getItem("localData"));
+  let token = JSON.parse(localStorage.getItem("localData")).token;
   // const token = tokenId.user.token;
-  axios.delete(`http://localhost:4000/programs/${grabProgram.id}`
-  //   {
-  //   headers: {
-  //       "Authorization": `Bearer ${token}`
-  //   }
-  // }
-)
+  // axios.delete(`https://pabraces.herokuapp.com/programs/${grabProgram.id}`
+  axios.delete(`https://pabraces.herokuapp.com/programs/${grabProgram.id}`,
+    {
+    headers: {
+        "Authorization": `Bearer ${token}`
+    }
+  })
   .then(response => {
     if(response.status === 200) {
       // console.log('frontend response is ', response);

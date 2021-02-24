@@ -19,6 +19,8 @@ class Navbar extends Component {
       key: '',
       joined: new Date(),
       submitError: false,
+      loginError: false,
+      errorMsg: 'wrong email or password!',
       modal1: false,
       loginForm: true,
       loggedIn: false,
@@ -35,7 +37,6 @@ class Navbar extends Component {
   }
   componentDidMount = () => {
     if (this.props.dataToChild !== null) {
-      console.log('dataToChild is ', this.props.dataToChild);
     this.setState({
       loggedIn: true
     });
@@ -153,14 +154,15 @@ changeHandler = (e) => {
 }
 
 toastSubmitPost = () => {
-  toast.success("Success! Form submitted.")
+  toast.success("Operation successfull!")
 }
 
 signupSubmit = () => {
-  axios.post('http://localhost:4000/admin/signup', this.state)
+  // axios.post('https://pabraces.herokuapp.com/admin/signup', this.state)
+  axios.post('https://pabraces.herokuapp.com/admin/signup', this.state)
   .then(response => {
     if(response.status === 200){
-      console.log('data posted - frontend', response);
+      // console.log('data posted - frontend', response);
       this.toastSubmitPost();
         this.setState({
           submitError: false,
@@ -168,7 +170,7 @@ signupSubmit = () => {
         });
         this.loginSubmit();
     } else {
-      console.log('inside catch block');
+      // console.log('inside catch block');
       this.setState({
         submitError: true,
         // modal1: false
@@ -182,29 +184,53 @@ signupSubmit = () => {
   });
 }
 
+toastWrongUser = () => {
+  toast.error('wrong username or password!');
+}
 loginSubmit = () => {
-  axios.post('http://localhost:4000/admin/signin', this.state)
+  // console.log('inside login func..');
+  axios.post('https://pabraces.herokuapp.com/admin/signin', this.state)
+  // axios.post('https://pabraces.herokuapp.com/admin/signin', this.state)
   .then(response => {
     if(response.status === 200){
+      console.log('inside login response..ok', response.data );
       // token is in response.data
-      console.log('data posted - frontend', response.data);
-        this.toastSubmitPost();
-        localStorage.setItem("currentState", JSON.stringify(response.data.token));
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-    } else {
-      console.log('inside catch block');
       this.setState({
-        submitError: true,
-        // modal1: false
+        loginError: false
+      });
+      this.toastSubmitPost();
+      let info = {
+        adminId: response.data.data.id,
+        token: response.data.token
+      }
+      localStorage.setItem("localData", JSON.stringify(info));
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    } else if (response === 401){
+      // this.toastWrongUser();
+      this.setState({
+        loggedIn: false,
+        loginError: true,
+        errorMsg: 'wrong email or password!',
+        modal1: this.state.modal1
+      });
+      //
+    }
+    else {
+      // console.log('inside catch block');
+      this.setState({
+        loggedIn: false,
+        loginError: true,
+        modal1: this.state.modal1
       });
     }
   })
   .catch(error => error)
   this.setState({
-    submitError: true,
-    // modal1: false
+    loggedIn: false,
+    loginError: true,
+    modal1: this.state.modal1
   });
 }
 
@@ -391,9 +417,9 @@ render() {
           </div>
           <div className="text-center">
             {
-              this.state.submitError === true ?
+              this.state.loginError === true ?
                 <MDBAlert color="danger">
-                  <strong>Oops!</strong> Something went wrong
+                  <strong>Oops!</strong> {this.state.errorMsg}
                 </MDBAlert> : null
             }
             <MDBBtn color="white"
