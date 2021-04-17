@@ -12,25 +12,25 @@ $subject = 'New Subscription';
 $email = $_POST['email'];
 $message = "$email\n has just subscribed to receive email updates from the Professor Emmanuel Olubusayo Ajayi Orthodontics Advancement Foundation \n ";
 $message = (!empty($message)) ? wordwrap($message, 70) : '';
-$result = mail($your_email, $subject, $message, $from);
-if ($result) {
-    echo json_encode(["sent" => 1, ]);
-} else {
-    echo json_encode(["sent" => 0, ]);
-}
-
-// send entry to database (not created yet)
-// $conn = mysqli_connect("profajayibraces.org", "profajay_profajay", "z5@N-4AjI2fz4Y", "profajay_subscriptionform");
-// $query = "insert into userSubscription (email)
-// values(
-// '" . $_POST['email'] . "'
-// )";
-// $result = @mysqli_query($conn, $query);
+// $result = mail($your_email, $subject, $message, $from);
 // if ($result) {
 //     echo json_encode(["sent" => 1, ]);
 // } else {
 //     echo json_encode(["sent" => 0, ]);
 // }
+
+// send entry to database (not created yet)
+$conn = mysqli_connect("profajayibraces.org", "profajay_dev", "peoaf21*+1", "profajay_publicationform");
+$query = "insert into userSubscription (email)
+values(
+'" . $_POST['email'] . "'
+)";
+$result = @mysqli_query($conn, $query);
+if ($result) {
+    echo json_encode(["sent" => 1, ]);
+} else {
+    echo json_encode(["sent" => 0, ]);
+}
 
 
 

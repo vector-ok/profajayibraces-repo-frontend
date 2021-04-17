@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn, MDBRow, MDBCol, MDBInput, MDBAlert } from "mdbreact";
-import { BrowserRouter as Router, withRouter, Link } from 'react-router-dom';
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBBtn, MDBRow, MDBCol, MDBInput, MDBAlert } from "mdbreact";
+import { withRouter } from 'react-router-dom';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import logo from '../assets/images/logo2.png';
-import logo_alt from '../assets/images/logo.png';
+// import logo_alt from '../assets/images/logo.png';
 
 class Navbar extends Component {
   constructor(props){
@@ -190,7 +190,6 @@ toastWrongUser = () => {
 loginSubmit = () => {
   // console.log('inside login func..');
   axios.post('https://pabraces.herokuapp.com/admin/signin', this.state)
-  // axios.post('https://pabraces.herokuapp.com/admin/signin', this.state)
   .then(response => {
     if(response.status === 200){
       console.log('inside login response..ok', response.data );
@@ -330,7 +329,7 @@ render() {
            </MDBNavbarNav>
            <MDBNavbarNav right>
              <MDBNavItem>
-               <MDBNavLink className="waves-effect waves-light" to="#!">
+               <MDBNavLink className="waves-effect waves-light" to="#!" onClick={()=> window.open("https://web.facebook.com/Prof-Emmanuel-Ajayi-Orthodontics-Advancement-Foundation-100848475376613/?_rdc=2&_rdr", "_blank")}>
                  <MDBIcon fab icon="facebook" />
                </MDBNavLink>
              </MDBNavItem>

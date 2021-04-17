@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import axios from 'axios';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Footer from './components/Footer';
@@ -7,6 +8,7 @@ import Join from './components/Join';
 import Contact from './components/Contact';
 import About from './components/About';
 import Programs from './components/Programs';
+import Publications from './components/Publications';
 import Gallery from './components/Gallery';
 import Why from './components/Why';
 import './App.css';
@@ -33,9 +35,27 @@ function App() {
   else {
   }
   }
+
+  const pingHeroku = () => {
+    if (sessionStorage.pingValue) {
+
+    } else {
+      axios.get('https://pabraces.herokuapp.com/programs')
+      .then(response => {
+        if (response.status === 200) {
+          console.log('heroku service pinged!');
+          sessionStorage.setItem('pingValue', 'pinged')
+        } else {
+
+        }
+      });
+    }
+  }
+
   return (
     <div>
       {/* { login() } */}
+      { pingHeroku() }
 
       <Router>
         <Navbar dataToChild = {loggedIn}/>
@@ -69,10 +89,13 @@ function App() {
           <Route path={'/programs'} render={props => (
             <Programs dataToChild = {loggedIn} />
           )} exact />
-          <Route path={'/gallery'}
-          render={props=> (
-            <Gallery dataToChild = {loggedIn} />
+          <Route path={'/publications'} render={props => (
+            <Publications dataToChild = {loggedIn} />
           )} exact />
+          <Route path={'/gallery'}
+            render={props=> (
+              <Gallery dataToChild = {loggedIn} />
+            )} exact />
         </Switch>
         <Footer/>
       </Router>

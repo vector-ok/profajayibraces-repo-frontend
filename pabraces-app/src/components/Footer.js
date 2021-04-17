@@ -125,6 +125,12 @@ class Footer extends Component {
                 <p>
                   <a href="/join" className="text-capitalize">Join Us</a>
                 </p>
+                <p>
+                <a href="/About" className="text-capitalize">Our team</a>
+                </p>
+                <p>
+                <a href="/publications" className="text-capitalize"> Publications </a>
+                </p>
 
                 <MDBTooltip domElement tag="span" placement="top" clickable>
                   <p>
@@ -139,9 +145,6 @@ class Footer extends Component {
                   </span>
                 </MDBTooltip>
 
-                <p>
-                  <a href="/About" className="text-capitalize">Our team</a>
-                </p>
               </div>
 
               {/* <!-- Grid column --> */}
@@ -183,7 +186,7 @@ class Footer extends Component {
                 <div className="text-center text-md-right">
                   <ul className="list-unstyled list-inline">
                     <li className="list-inline-item">
-                      <a className="btn-floating btn-sm rgba-white-slight mx-1">
+                      <a className="btn-floating btn-sm rgba-white-slight mx-1" href="https://web.facebook.com/Prof-Emmanuel-Ajayi-Orthodontics-Advancement-Foundation-100848475376613/?_rdc=2&_rdr">
                         <i className="fab fa-facebook-f"></i>
                       </a>
                     </li>

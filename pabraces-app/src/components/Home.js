@@ -55,7 +55,7 @@ class Home extends Component {
           speed: 2000,
           autoplaySpeed: 2000,
           cssEase: "linear",
-          rtl: true
+          rtl: false
         };
         const settings = {
           dots: false,

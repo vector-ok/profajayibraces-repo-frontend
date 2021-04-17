@@ -335,19 +335,19 @@ render() {
             <div className="rgba-black-strong py-5 px-4">
               <MDBRow className="d-flex justify-content-center">
                 <MDBCol md="10" xl="8">
-                    <h1 className="text-lora text-capitalize text-center white-text mb-2">  Programs</h1>
+                  <h1 className="text-lora text-capitalize text-center white-text mb-2">  Programs</h1>
 
-                    <div className=" box feedback-form">
-    {this.state.dataSent ?
-    <p className="msg">
-    SUCCESS<br/><br/>
-    Thanks for submitting your feedback.<br/>
-    We appreciate your time.
-    </p>
-    :
-    <p>something went wrong php</p>
-    }
-  </div>
+                  {/* <div className=" box feedback-form">
+                    {this.state.dataSent ?
+                      <p className="msg">
+                    SUCCESS<br/><br/>
+                    Thanks for submitting your feedback.<br/>
+                    We appreciate your time.
+                      </p>
+                    :
+                    <p>something went wrong php</p>
+                    }
+                  </div> */}
 
 
                   <MDBContainer className="accordion md-accordion accordion-5">
