@@ -88,7 +88,7 @@ class Why extends Component {
             <p> <strong> Malocclusion </strong> is the term used to describe irregularly arranged teeth, crooked teeth, crowded, misplaced, unerupted or blocked-out teeth, spacing of teeth, protruding teeth, upper or lower jaws that are too far forward or back, upper and lower teeth that do not meet in front or back with gap in-between or abnormally related e.t.c. </p>
 
             <p>
-            Orthodontic problems are of public health importance and they do constitute a great concern as the ability to chew one’s food without difficulties, communicate orally and pronounce words correctly, breathe normally, smile with pleasing facial appearance, all together enhance productive social interactions and quality of life for all individuals. </p>
+            Orthodontic problems are of public health importance and do constitute a great concern as the ability to chew one’s food without difficulties, communicate orally and pronounce words correctly, breathe normally, smile with pleasing facial appearance, all together enhance productive social interactions and quality of life for all individuals. </p>
 
             <p className="font-italic"> Some pictures of irregularly arranged teeth are shown here.</p>
             <div className="my-2 pt-2 mdb-lightbox no-margin border border-left-0 border-right-0 border-dark">

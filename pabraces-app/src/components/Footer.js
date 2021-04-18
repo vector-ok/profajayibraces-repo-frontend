@@ -126,10 +126,10 @@ class Footer extends Component {
                   <a href="/join" className="text-capitalize">Join Us</a>
                 </p>
                 <p>
-                <a href="/About" className="text-capitalize">Our team</a>
+                  <a href="/About" className="text-capitalize">Our team</a>
                 </p>
                 <p>
-                <a href="/publications" className="text-capitalize"> Publications </a>
+                  <a href="https://profajayibraces.org/publication" className="text-capitalize"> Publications </a>
                 </p>
 
                 <MDBTooltip domElement tag="span" placement="top" clickable>

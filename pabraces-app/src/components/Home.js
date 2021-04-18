@@ -278,15 +278,13 @@ class Home extends Component {
                           {/* xs screens ended */}
 
 
-                          <ScrollAnimation animateIn="fadeIn">
-                            <div className="d-none d-sm-block col-7 col-sm-7 col-md-5 col-lg-8 box-left-2 rounded text-left rgba-blue-grey-strong white-text mt-5 mx-3 pt-3">
+                          <div className="d-none d-sm-block col-7 col-sm-7 col-md-5 col-lg-8 box-left-2 rounded text-left rgba-blue-grey-strong white-text mt-5 mx-3 pt-3">
                             <img src={aim} alt="aim" className="float-left img-fluid mr-1 mr-sm-2" />
                             <p class="lead mb-0">To promote, </p>
                             {/* <hr class="my-4" /> */}
                             <p className=""> facilitate and organise scientific conferences, seminars, colloquiums and 	workshops in orthodontics, orthodontic management of patients and related subjects.
                             </p>
                           </div>
-                        </ScrollAnimation>
                           <img src={studentsBg} className="pb-2 img-fluid" alt="students" />
                           {/* for xs screens */}
                           <div className="d-block d-sm-none mt-1 mx-1 pt-3">
@@ -342,7 +340,7 @@ class Home extends Component {
                             </p>
                           </div>
 
-                          <img src={serveBg} className="pb-2 img-fluid height-75" alt="man examining pupil" />
+                          <img src={serveBg} className="pb-2 img-fluid pl-5" alt="man examining pupil" />
 
                           {/* for xs screens */}
                           <div className="d-block d-sm-none mt-1">
