@@ -342,7 +342,7 @@ class Home extends Component {
                             </p>
                           </div>
 
-                          <img src={serveBg} className="pb-2 img-fluid height-75" alt="man examining pupil" />
+                          <img src={serveBg} className="pb-2 img-fluid" alt="man examining pupil" />
 
                           {/* for xs screens */}
                           <div className="d-block d-sm-none mt-1">
