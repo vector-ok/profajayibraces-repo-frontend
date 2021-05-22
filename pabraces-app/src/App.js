@@ -8,7 +8,7 @@ import Join from './components/Join';
 import Contact from './components/Contact';
 import About from './components/About';
 import Programs from './components/Programs';
-// import Publications from './components/Publications';
+import Publications from './components/Publications';
 import Gallery from './components/Gallery';
 import Why from './components/Why';
 import './App.css';
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div>
-      { login() }
+      {/* { login() } */}
       { pingHeroku() }
 
       <Router>
@@ -89,9 +89,9 @@ function App() {
           <Route path={'/programs'} render={props => (
             <Programs dataToChild = {loggedIn} />
           )} exact />
-          {/* <Route path={'/publications'} render={props => (
+          <Route path={'/publications'} render={props => (
             <Publications dataToChild = {loggedIn} />
-          )} exact /> */}
+          )} exact />
           <Route path={'/gallery'}
             render={props=> (
               <Gallery dataToChild = {loggedIn} />

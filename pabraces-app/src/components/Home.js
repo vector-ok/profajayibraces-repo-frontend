@@ -278,13 +278,15 @@ class Home extends Component {
                           {/* xs screens ended */}
 
 
-                          <div className="d-none d-sm-block col-7 col-sm-7 col-md-5 col-lg-8 box-left-2 rounded text-left rgba-blue-grey-strong white-text mt-5 mx-3 pt-3">
+                          <ScrollAnimation animateIn="fadeIn">
+                            <div className="d-none d-sm-block col-7 col-sm-7 col-md-5 col-lg-8 box-left-2 rounded text-left rgba-blue-grey-strong white-text mt-5 mx-3 pt-3">
                             <img src={aim} alt="aim" className="float-left img-fluid mr-1 mr-sm-2" />
                             <p class="lead mb-0">To promote, </p>
                             {/* <hr class="my-4" /> */}
                             <p className=""> facilitate and organise scientific conferences, seminars, colloquiums and 	workshops in orthodontics, orthodontic management of patients and related subjects.
                             </p>
                           </div>
+                        </ScrollAnimation>
                           <img src={studentsBg} className="pb-2 img-fluid" alt="students" />
                           {/* for xs screens */}
                           <div className="d-block d-sm-none mt-1 mx-1 pt-3">
@@ -340,7 +342,7 @@ class Home extends Component {
                             </p>
                           </div>
 
-                          <img src={serveBg} className="pb-2 img-fluid pl-5" alt="man examining pupil" />
+                          <img src={serveBg} className="pb-2 img-fluid height-75" alt="man examining pupil" />
 
                           {/* for xs screens */}
                           <div className="d-block d-sm-none mt-1">
@@ -487,7 +489,7 @@ class Home extends Component {
                       <MDBRow>
                         <MDBCol>
                           <p>
-                            Orthodontic problems are of public health importance and they do constitute a great concern as the ability to chew one’s food without difficulties, communicate orally and pronounce words correctly, breathe normally, smile with pleasing facial appearance, all together enhance productive social interactions and quality of life for all individuals.
+                            Orthodontic problems are of public health importance and do constitute a great concern as the ability to chew one’s food without difficulties, communicate orally and pronounce words correctly, breathe normally, smile with pleasing facial appearance, all together enhance productive social interactions and quality of life for all individuals.
                           </p>
                           <p>
                             It is obvious that one cannot be truly healthy without good oral health and smiles. Thankfully, malocclusion and most of these occlusal variants illustrated can be treated by a Specialist / Consultant Orthodontist. Orthodontists are primarily Dental Surgeons who had undergone at least 3 - 6 years of University Post-graduate Master’s programme and or Residency training at the University Teaching Hospital.
